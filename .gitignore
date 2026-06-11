@@ -216,3 +216,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Generated images (output files)
+*.jpg
+*.png
+*.jpeg
+*.webp
+
+# Python version pin (user-specific)
+.python-version
