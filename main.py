@@ -248,14 +248,8 @@ def generate(cfg: dict):
         contents=contents,
         config=config,
     ):
-        # 手動迭代 parts 印文字，避免 SDK 的 chunk.text 在遇到圖片時
-        # 發出 "non-text parts in the response" 警告
-        if not cfg["quiet"] and chunk.candidates:
-            for candidate in chunk.candidates:
-                if candidate.content and candidate.content.parts:
-                    for part in candidate.content.parts:
-                        if hasattr(part, 'text') and part.text:
-                            print(part.text, end="")
+        if chunk.text and not cfg["quiet"]:
+            print(chunk.text, end="")
 
         image_count, saved = collect_images(chunk, image_count, prefix)
         all_saved.extend(saved)
